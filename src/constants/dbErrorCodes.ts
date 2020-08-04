@@ -1,0 +1,1 @@
+export const dbErrorCodes = {uniqueViolation: 23505}
