@@ -5,7 +5,7 @@ import {QuotesModel} from "../model/quote.model";
 
 export const getQuote = async (idx: string) => {
   try {
-    if (idx === '69')
+    if (idx === '696969')
       return {
         quote: "senpai put your dick in my asshole",
         author: "michael the baptist"
