@@ -1,22 +1,23 @@
 import {AppError} from "../util/errorHandling"
 import {HttpCode} from "../constants/httpCode"
-import quotes from "../quotes.json"
-import seedrandom from 'seedrandom'
+import {QuotesModel} from "../model/quote.model";
 
-export const getQuote = () => {
-  const qts = quotes as any
+
+export const getQuote = async (idx: string) => {
   try {
-    const rand = seedrandom(Date.now().toString())
-    if (rand() < .5)
-      return {quote: "senpai put your dick in my asshole", author: "michael the baptist"}
+    if (idx === '69')
+      return {
+        quote: "senpai put your dick in my asshole",
+        author: "michael the baptist"
+      }
     else {
-      const idx = Math.trunc(Math.random() * qts.length)
-      const quote = qts[idx]
-      quote.Author = quote.Author.split(",")[0]
+      const quote: any = await QuotesModel.findOne({idx}).exec()
+      if (!quote)
+        throw new AppError("quote not found" + "rand:" + idx, HttpCode.BAD_REQUEST)
       return quote
     }
   } catch (e) {
-    throw new AppError("SQL Error", HttpCode.BAD_REQUEST, e.stackTrace())
+    console.log(e)
   }
 }
 

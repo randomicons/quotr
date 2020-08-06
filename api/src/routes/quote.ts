@@ -4,9 +4,9 @@ import {AppError, handleError} from "../util/errorHandling"
 import {HttpCode} from "../constants/httpCode"
 
 export const routes = Router()
-routes.get("/quote", async (req: Request, res) => {
+routes.get("/:day", async (req: Request, res) => {
   try {
-    res.json(quoteService.getQuote())
+    res.json(await quoteService.getQuote(req.params.day))
   } catch (e) {
     handleError(e)
     if (e instanceof AppError)
