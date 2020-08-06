@@ -27,11 +27,9 @@
     "typescript": "^3.9.5"
   },
   "scripts": {
-    "prod": "node ./build/index.js",
+    "start": "node ./build/index.js",
     "tsc": "tsc",
-    "start": "npm run build:live",
-    "build": "tsc -p .",
-    "build:live": "nodemon --watch 'src/**/*.ts' --exec NODE_ENV='dev' ts-node src/index.ts"
+    "build": "tsc -p ."
   },
   "author": "",
   "license": "ISC"
