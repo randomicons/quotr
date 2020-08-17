@@ -3,6 +3,7 @@ import {Express, Router} from "express"
 import logger from "morgan"
 import cookieParser from "cookie-parser"
 import {routes as quoteRoutes} from "./routes/quote"
+import {routes as animeRoutes} from "./routes/anime"
 import {handleError} from "./util/errorHandling"
 import mongoose from 'mongoose'
 
@@ -24,6 +25,7 @@ export default function (app: Express): void {
   mainRoute.use(bodyParser.urlencoded({extended: true}))
   // mainRoute.use(checkAuth)
   mainRoute.use("/quote", quoteRoutes)
+  mainRoute.use("/anime", animeRoutes)
 }
 
 process.on("unhandledRejection", error => {
